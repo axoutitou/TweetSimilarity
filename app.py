@@ -1,18 +1,24 @@
 from flask import Flask, request, render_template
-#import pickle
+import pickle
 
 app = Flask(__name__)
 
-
-#LOADING example
-# with open('vectorizer.pkl', 'rb') as f:
-# 	vectorizer = pickle.load(f)
+with open('model.pkl', 'rb') as f:
+	model = pickle.load(f)
+	
+with open('documents.pkl', 'rb') as f:
+	documents = pickle.load(f)
 
 def getTop10SimilarTweet(param_tweet):
-    result = {}
-    for i in range(10):
-        result['tweet'+ str(i)] = "Here is the result for tweet"+ str(i)
-    return result
+	new_sentence = param_tweet.split(" ")
+	res = model.docvecs.most_similar(positive=[model.infer_vector(new_sentence)],topn=20)	
+	result = {}
+	i = 0
+	for tag, score in res:
+		result['tweet'+ str(i)] = ("Sentence : ", documents[tag].words," | Score :", score )
+		i = i + 1
+		
+	return result
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
