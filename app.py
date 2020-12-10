@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from prometheus_client import start_http_server
 import pickle
 
 app = Flask(__name__)
@@ -31,4 +32,5 @@ def index():
         return render_template('index.html')
 
 if __name__ == '__main__':
+    start_http_server(8010)
     app.run(host='0.0.0.0')

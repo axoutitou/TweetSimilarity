@@ -1,3 +1,4 @@
 flask
 gensim
 pyramid
+prometheus_client
