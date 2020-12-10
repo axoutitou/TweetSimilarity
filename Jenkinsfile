@@ -20,7 +20,7 @@ pipeline {
       }
     }
 
-    stage ('Build App') {
+    stage ('Test App') {
       steps{
         script{
           groovyfile.test_app()
