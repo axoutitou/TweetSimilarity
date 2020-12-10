@@ -20,7 +20,6 @@ pipeline {
     }
   }
   
-  
   stage ('Build App') {
     steps{
       script{
@@ -36,7 +35,6 @@ pipeline {
      }
     }
   }
-  
   
   stage ('Release App') {
     steps{
