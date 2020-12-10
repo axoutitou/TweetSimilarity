@@ -5,7 +5,7 @@ def build_app(){
 
 def test_app(){
   echo 'Tests are executing'
-  bat 'python test_app.py
+  bat 'python test_app.py'
 }
 
 def down_app(){
