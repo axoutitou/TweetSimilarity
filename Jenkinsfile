@@ -47,9 +47,9 @@ pipeline {
     stage ('Push to Release') {
       steps{
         script{
-              powershell 'git config --global credential.helper store' 
-              powershell 'git pull' 
-              powershell 'git push origin Release'
+              withCredentials([usernamePassword(credentialsId: 'florin-alexandru.poschina@efrei.net', passwordVariable: 'j21Ml56d', usernameVariable: 'fpa-alex')]) {
+                        powershell('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/axoutitou/TweetSimilarity.git origin Release') 
+                    }
         }
       }
     }
