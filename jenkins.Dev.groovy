@@ -29,7 +29,7 @@ def release_app(){
   
   withCredentials([usernamePassword(credentialsId: 'fpa-alex', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     echo 'Merge into release branch'             
-    powershell 'git remote set-url origin https://$USERNAME:$PASSWORD@github.com/axoutitou/TweetSimilarity.git'
+    powershell 'git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/axoutitou/TweetSimilarity.git'
     echo 'The user name is $USERNAME' 
     echo 'The password is $PASSWORD'
     powershell 'git checkout Release'
