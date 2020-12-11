@@ -1,6 +1,6 @@
 def build_app(){
   echo 'Dev branch is building and launching'
-  bat 'docker-compose up -d'
+  powershell 'docker-compose up -d'
 }
 
 def user_acceptance(){
@@ -14,7 +14,7 @@ def test_app(){
 
 def down_app(){
   echo 'Application is shutting down'
-  sh 'docker-compose down'
+  powershell 'docker-compose down'
 }
 
 def release_app(){
