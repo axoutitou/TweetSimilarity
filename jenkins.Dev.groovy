@@ -1,17 +1,17 @@
 def build_app(){
   echo 'Dev branch is building and launching'
-  bat 'docker-compose up -d'
+  powershell 'docker-compose up -d'
 }
 
 def unit_test(){
   echo 'Unit tests are executing'
-  bat 'python test_app.py'
+  powershell 'python test_app.py'
 }
 
 
 def integration_test(){
   echo 'Integration tests are executing'
-  bat 'python integration_tests_app.py'
+  powershell 'python integration_tests_app.py'
 }
 
 def test_app(){
@@ -22,7 +22,7 @@ def test_app(){
 
 def down_app(){
   echo 'Application is shutting down'
-  sh 'docker-compose down'
+  powershell 'docker-compose down'
 }
 
 def release_app(){
