@@ -26,7 +26,7 @@ def down_app(){
 }
 
 def release_app(){  
-  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'fpa-alex', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+  withCredentials([string(credentialsId:'fpa-alex', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     echo 'Merge into release branch'             
     powershell 'git remote set-url origin https://$USERNAME:$PASSWORD@github.com/axoutitou/TweetSimilarity.git'
     powershell 'git checkout Release'
