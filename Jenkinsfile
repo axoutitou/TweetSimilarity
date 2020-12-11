@@ -43,5 +43,13 @@ pipeline {
        }
       }
     }
+    
+    stage ('Push to Release') {
+      steps{
+        script{
+          groovyfile.push_to_release()
+       }
+      }
+    }       
   }
 }
