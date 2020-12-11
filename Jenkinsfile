@@ -48,7 +48,7 @@ pipeline {
       steps{
         script{
               withCredentials([usernamePassword(credentialsId: 'fpa-alex', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                        powershell('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/axoutitou/TweetSimilarity.git origin Release') 
+                        powershell('git push https://florin-alexandru.poschina@efrei.net:j21ML56d@github.com/axoutitou/TweetSimilarity.git origin Release') 
                     }
         }
       }
