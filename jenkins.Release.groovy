@@ -18,6 +18,13 @@ def down_app(){
 }
 
 def release_app(){
+ withCredentials([usernamePassword(credentialsId: 'fpa-alex', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+    echo 'Merge into prod branch'             
+    powershell 'git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/axoutitou/TweetSimilarity.git'
+    powershell 'git checkout Prod'
+    powershell 'git merge Release'
+    powershell 'git push origin Prod'
+  }
 }
 
 return this
