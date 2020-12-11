@@ -47,7 +47,9 @@ pipeline {
     stage ('Push to Release') {
       steps{
         script{
-          groovyfile.push_to_release()
+           sshagent(['Git_key']){
+            powershell 'git push origin Release' 
+         }
        }
       }
     }       
