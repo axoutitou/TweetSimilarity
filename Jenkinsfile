@@ -49,7 +49,7 @@ pipeline {
         script{
               powershell 'git config --global credential.helper store' 
               powershell 'git pull' 
-              powershell 'git push'
+              powershell 'git push origin Release'
         }
       }
     }
