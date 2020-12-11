@@ -29,7 +29,6 @@ def release_app(){
   echo 'Merge into release branch'
   powershell 'git checkout Release'
   powershell 'git merge Dev'
-  powershell 'git commit -m "Dev branch merged into Release branch"'
   powershell 'git push'
   
 }
