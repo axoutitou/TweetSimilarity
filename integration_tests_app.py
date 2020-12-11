@@ -22,6 +22,19 @@ class FlaskTests(unittest.TestCase):
 		}		
 		response = requests.post('http://localhost:5000', data=params)
 		self.assertEqual(response.status_code, 200)
+		
+	def test_1000RequestsPerMinute(self):
+		start = time.clock()
+		params = {
+			'tweet': self.parameters['phrase']
+		}
+		for i in (0,1000)
+			response = requests.post('http://localhost:5000', data=params)
+			self.assertEqual(response.status_code, 200)
+				
+		request_time = time.clock() - start
+		print(request_time)
+		self.assertTrue(request_time < 60)
 
 if __name__ == '__main__':
 	unittest.main()
