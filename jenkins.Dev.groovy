@@ -31,4 +31,11 @@ def release_app(){
   powershell 'git merge Dev'
 }
 
+def push_to_release(){
+  sshagent(['Git_key']) 
+ {
+    sh('git push origin Release') 
+ }
+}
+
 return this
