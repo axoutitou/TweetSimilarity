@@ -33,8 +33,9 @@ class FlaskTests(unittest.TestCase):
 			self.assertEqual(response.status_code, 200)
 				
 		request_time = time.clock() - start
+		minuteToCompare = now.replace(hour=0, minute=1, second=0, microsecond=0)
 		print(request_time)
-		self.assertTrue(request_time < 60)
+		self.assertTrue(request_time < minuteToCompare)
 
 if __name__ == '__main__':
 	unittest.main()
