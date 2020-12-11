@@ -47,9 +47,11 @@ pipeline {
     stage ('Push to Release') {
       steps{
         script{
-            powershell 'git push origin Release' 
-       }
+           sshagent(['Git_key']){
+              powershell 'git push origin Release' 
+           }
+        }
       }
-    }       
+    }
   }
 }
