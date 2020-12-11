@@ -47,9 +47,10 @@ pipeline {
     stage ('Push to Release') {
       steps{
         script{
-              withCredentials([usernamePassword(credentialsId: 'fpa-alex', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                        powershell('git push https://@github.com/axoutitou/TweetSimilarity.git origin Release') 
-                    }
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'fpa-alex', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                  powershell('git remote set-url origin https://USERNAME:PASSWORD@github.com/axoutitou/TweetSimilarity.git')
+                  powershell('git checkout origin Release')
+           }
         }
       }
     }
