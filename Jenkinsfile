@@ -47,9 +47,9 @@ pipeline {
     stage ('Push to Release') {
       steps{
         script{
-           sshagent(['Git_key']){
-              powershell 'git push origin Release' 
-           }
+              powershell 'git config --global credential.helper store' 
+              powershell 'git pull' 
+              powershell 'git push'
         }
       }
     }
