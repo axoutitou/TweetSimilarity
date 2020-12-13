@@ -30,10 +30,11 @@ pipeline {
 
     stage ('Down App') {
       steps{
-        bat 'python test_app.py'
-        /*script{
-          groovyfile.down_app()
-       }*/
+        
+        script{
+          bat 'python test_app.py'
+        /*  groovyfile.down_app()*/
+       }
       }
     }
 
