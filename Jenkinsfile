@@ -30,9 +30,10 @@ pipeline {
 
     stage ('Down App') {
       steps{
-        script{
+        powershell 'python test_app.py'
+        /*script{
           groovyfile.down_app()
-       }
+       }*/
       }
     }
 
