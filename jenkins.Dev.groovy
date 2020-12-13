@@ -16,7 +16,7 @@ def run_tests(){
 
 def destroy_tests_env(){
   echo 'Environement tests is being removed'
-  docker 'docker rmi -f tweets_similarity_tests'
+  bat 'docker rmi -f tweets_similarity_tests'
 }
 
 def test_app(){
