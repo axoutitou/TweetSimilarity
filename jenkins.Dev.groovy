@@ -28,11 +28,11 @@ def test_app(){
   create_tests_env()
   run_unit_tests()
   run_integration_tests()
-  destroy_tests_env()
 }
 
 def down_app(){
   echo 'Application is shutting down'
+  destroy_tests_env()
   bat 'docker-compose down'
 }
 
