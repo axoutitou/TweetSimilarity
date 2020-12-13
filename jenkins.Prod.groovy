@@ -1,17 +1,16 @@
 def build_app(){
-  echo 'Dev branch is building and launching'
+  echo 'Prod branch is updating'
+  bat 'docker-compose down'
+  bat 'docker-compose up' 
 }
 
 def test_app(){
-  echo 'Tests are executing'
 }
 
 def down_app(){
-  echo 'Application is shutting down'
 }
 
 def release_app(){
-  echo 'Branch into release'
 }
 
 return this
