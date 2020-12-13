@@ -34,8 +34,10 @@ class FlaskTests(unittest.TestCase):
 			self.assertEqual(response.status_code, 200)
 				
 		request_time = time.process_time() - start
-		print(f'Process time is {request_time}')
-		self.assertTrue(request_time < 60)
+		print(f'Process time is {int(request_time % 60)}')
+		self.assertTrue(request_time < now.replace(hour=0, minute=0, second=60, microsecond=0))
+		
+		
 		
 	
 		
