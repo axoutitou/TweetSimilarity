@@ -32,7 +32,7 @@ pipeline {
       steps{
         
         script{
-          bat 'python test_app.py'
+          python test_app.py
         /*  groovyfile.down_app()*/
        }
       }
