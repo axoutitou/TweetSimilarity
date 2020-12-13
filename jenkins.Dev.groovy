@@ -5,13 +5,12 @@ def build_app(){
 
 def unit_test(){
   echo 'Unit tests are executing'
-  powershell ' python test_app.py'
+  powershell 'echo Trying to use powershell'
 }
 
 
 def integration_test(){
   echo 'Integration tests are executing'
-  powershell 'python integration_tests_app.py'
 }
 
 def test_app(){
