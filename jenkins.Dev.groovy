@@ -15,7 +15,7 @@ def run_unit_tests(){
 }
 
 def run_integration_tests(){
-  echo 'Unit tests are being executed'
+  echo 'Integration tests are being executed'
   bat 'docker run -e TESTS=integration_tests_app.py tweets_similarity_tests'
 }
 
