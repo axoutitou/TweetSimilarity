@@ -15,6 +15,6 @@ COPY ./documents.pkl .
 
 RUN ls -lrt
 
-EXPOSE 5001
+EXPOSE 5000
 
 CMD ["python", "app.py"]
