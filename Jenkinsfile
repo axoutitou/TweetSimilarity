@@ -14,33 +14,41 @@ pipeline {
 
     stage ('Build App') {
       steps{
-        script{
-          groovyfile.build_app()
-       }
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          script{
+           groovyfile.build_app()
+          }
+        }
       }
     }
 
     stage ('Test App') {
       steps{
-        script{
-          groovyfile.test_app()
-       }
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          script{
+           groovyfile.test_app()
+          }
+        }
       }
     }
 
     stage ('Down App') {
       steps{
-        script{
-          groovyfile.down_app()
-       }
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          script{
+           groovyfile.down_app()
+          }
+        }
       }
     }
 
     stage ('Release App') {
       steps{
-        script{
-          groovyfile.release_app()
-       }
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          script{
+           groovyfile.release_app()
+          }
+        }
       }
     }
   }
