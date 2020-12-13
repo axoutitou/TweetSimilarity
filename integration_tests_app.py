@@ -21,19 +21,19 @@ class FlaskTests(unittest.TestCase):
 		params = {
 			'tweet': self.parameters['phrase']
 		}		
-		response = requests.post('http://localhost:5000', data=params)
+		response = requests.post('http://host.docker.internal:5000', data=params)
 		self.assertEqual(response.status_code, 200)
 		
 	def test_1000RequestsPerMinute(self):
-		start = time.clock()
+		start = time.process_time()
 		params = {
 			'tweet': self.parameters['phrase']
 		}
 		for i in range(1000):
-			response = requests.post('http://localhost:5000', data=params)
+			response = requests.post('http://host.docker.internal:5000', data=params)
 			self.assertEqual(response.status_code, 200)
 				
-		request_time = time.clock() - start
+		request_time = time.process_time() - start
 		print(request_time)
 		self.assertTrue(request_time < 60)
 		
