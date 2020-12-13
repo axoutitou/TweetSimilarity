@@ -1,13 +1,13 @@
 FROM python:3
 
+ENV TESTS test_app.py
+
 WORKDIR /app
 
 COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "test_app.py"]
-
-CMD ["python", "integration_tests_app.py"]
+CMD python $TESTS
 
 EXPOSE 5000
