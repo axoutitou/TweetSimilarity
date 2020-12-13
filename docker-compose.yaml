@@ -2,6 +2,6 @@ version: "3"
 services:
     web:
         build: .
-        image: webappProd:tweetSimilarityProd
+        image: webappprod:tweetsimilarityprod
         ports:
             - "8081:5000"
