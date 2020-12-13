@@ -8,11 +8,16 @@ def create_tests_env(){
   bat 'docker build -f Dockerfile_tests -t tweets_similarity_tests .'
 }
 
-def run_tests(){
-  echo 'Unit and integration tests are executing'
-  bat 'docker run tweets_similarity_tests'
+
+def run_unit_tests(){
+  echo 'Unit tests are being executed'
+  bat 'docker run -e TESTS=test_app.py tweets_similarity_tests'
 }
 
+def run_integration_tests(){
+  echo 'Unit tests are being executed'
+  bat 'docker run -e TESTS=integration_tests_app.py tweets_similarity_tests'
+}
 
 def destroy_tests_env(){
   echo 'Environement tests is being removed'
@@ -20,9 +25,9 @@ def destroy_tests_env(){
 }
 
 def test_app(){
-  echo 'Tests are executing'
   create_tests_env()
-  run_tests()
+  run_unit_tests()
+  run_integration_tests()
   destroy_tests_env()
 }
 
