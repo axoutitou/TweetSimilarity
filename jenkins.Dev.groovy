@@ -3,21 +3,27 @@ def build_app(){
   bat 'docker-compose up -d'
 }
 
-def unit_test(){
-  echo 'Unit tests are executing'
-  powershell 'python test_app.py'
+def create_tests_env(){
+  echo 'The testing environement is being created'
+  bat 'docker build -f Dockerfile_tests -t tweets_similarity_tests .'
+}
+
+def run_tests(){
+  echo 'Unit and integration tests are executing'
+  docker 'run tweets_similarity_tests'
 }
 
 
-def integration_test(){
-  echo 'Integration tests are executing'
-  powershell 'python integration_tests_app.py'
+def destroy_tests_env(){
+  echo 'Environement tests is being removed'
+  docker 'docker rmi -f tweets_similarity_tests'
 }
 
 def test_app(){
   echo 'Tests are executing'
-  unit_test()
-  integration_test()
+  create_tests_env()
+  run_tests()
+  destroy_tests_env()
 }
 
 def down_app(){
