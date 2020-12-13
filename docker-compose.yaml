@@ -4,4 +4,4 @@ services:
         build: .
         image: webappProd:tweetSimilarityProd
         ports:
-            - "5001:5001"
+            - "8081:5000"
