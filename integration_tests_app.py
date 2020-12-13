@@ -3,7 +3,7 @@ import os
 import requests
 from flask import Flask, request, render_template
 from pyramid import testing
-import time
+from time import perf_counter
 
 class FlaskTests(unittest.TestCase):
 
@@ -25,7 +25,7 @@ class FlaskTests(unittest.TestCase):
 		self.assertEqual(response.status_code, 200)
 		
 	def test_1000RequestsPerMinute(self):
-		start = time.process_time()
+		start = perf_counter()
 		params = {
 			'tweet': self.parameters['phrase']
 		}
@@ -33,9 +33,10 @@ class FlaskTests(unittest.TestCase):
 			response = requests.post('http://host.docker.internal:5000', data=params)
 			self.assertEqual(response.status_code, 200)
 				
-		request_time = time.process_time() - start
-		print(f'Process time is {int(request_time % 60)}')
-		self.assertTrue(request_time < now.replace(hour=0, minute=0, second=60, microsecond=0))
+		stop = perf_counter()
+		elapsed_time = stop - start
+		print(f'Process time is {elapsed_time}')
+		self.assertTrue(elapsed_time < 60.0)
 		
 		
 		
