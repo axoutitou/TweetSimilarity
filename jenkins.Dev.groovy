@@ -10,7 +10,7 @@ def create_tests_env(){
 
 def run_tests(){
   echo 'Unit and integration tests are executing'
-  docker 'run tweets_similarity_tests'
+  bat 'docker run tweets_similarity_tests'
 }
 
 
