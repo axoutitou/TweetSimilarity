@@ -30,7 +30,7 @@ pipeline {
 
     stage ('Down App') {
       steps{
-        powershell 'python test_app.py'
+        bat 'python test_app.py'
         /*script{
           groovyfile.down_app()
        }*/
