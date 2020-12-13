@@ -5,14 +5,13 @@ def build_app(){
 
 def unit_test(){
   echo 'Unit tests are executing'
-  bat 'python version'
-  //bat 'C:\\Users\\fpa\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe test_app.py'
+  powershell 'python test_app.py'
 }
 
 
 def integration_test(){
   echo 'Integration tests are executing'
-  //bat 'C:\\Users\\fpa\\AppData\\Local\\Microsoft\\WindowsApps\\python.exee integration_tests_app.py'
+  powershell 'python integration_tests_app.py'
 }
 
 def test_app(){
