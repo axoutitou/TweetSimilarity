@@ -30,10 +30,8 @@ pipeline {
 
     stage ('Down App') {
       steps{
-        
         script{
-          python test_app.py
-        /*  groovyfile.down_app()*/
+          groovyfile.down_app()
        }
       }
     }
