@@ -1,7 +1,7 @@
 def build_app(){
   echo 'Prod branch is updating'
   bat 'docker-compose down'
-  bat 'docker-compose up' 
+  bat 'docker-compose up --build' 
 }
 
 def test_app(){
