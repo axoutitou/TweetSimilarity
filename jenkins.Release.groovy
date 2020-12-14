@@ -1,5 +1,5 @@
 def build_app(){
-  echo 'Dev branch is building and launching'
+  echo 'Release branch is building and launching'
   bat 'docker-compose up -d'
 }
 
@@ -8,7 +8,7 @@ def user_acceptance(){
 }
 
 def test_app(){
-  echo 'Tests are executing'
+  echo 'Manual testing are executing'
   user_acceptance()
 }
 
@@ -18,15 +18,11 @@ def down_app(){
 }
 
 def release_app(){
-  echo 'After user acceptance, merge into the Prod branch'
-  /*withCredentials([usernamePassword(credentialsId: 'fpa-alex', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     echo 'Merge into prod branch'             
-    bat 'git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/axoutitou/TweetSimilarity.git'
-    bat 'git checkout Prod'
-    bat 'git merge Release'
-    bat 'git push origin Prod'
-  }
-  */
+    echo 'git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/axoutitou/TweetSimilarity.git'
+    echo 'git checkout Prod'
+    echo 'git merge Release'
+    echo 'git push origin Prod'
 }
 
 return this
