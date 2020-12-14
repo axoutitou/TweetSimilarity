@@ -1,8 +1,30 @@
-version: "3"
+version: "3.9"
 services:
-    web:
+    webapp1:
         build: .
-        image: webapp:tweetSimilarity
+        tty: true
         ports:
-            - "5000:5000"
-            - "8010:8010"
+            - "5001:5000"
+            - "8011:8010"
+
+        restart: always
+        
+    webapp2:
+        build: .
+        tty: true
+        ports:
+            - "5002:5000"
+            - "8012:8010"
+        restart: always
+            
+    loadbalancer:
+        build:
+            context: .
+            dockerfile: Dockerfile-load-balancer
+        tty: true
+        ports:
+            - '5000:5000'
+        depends_on:
+            - webapp1
+            - webapp2
+                    
