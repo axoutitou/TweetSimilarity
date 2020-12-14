@@ -37,14 +37,11 @@ def down_app(){
 }
 
 def release_app(){  
-  
-  withCredentials([usernamePassword(credentialsId: 'fpa-alex', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-    echo 'Merge into release branch'             
-    echo 'git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/axoutitou/TweetSimilarity.git'
-    echo 'git checkout Release'
-    echo 'git merge Dev'
-    echo 'git push origin Release'
-  }
+  echo 'Merge into release branch'             
+  echo 'git remote set-url origin https://github.com/axoutitou/TweetSimilarity.git'
+  echo 'git checkout Release'
+  echo 'git merge Dev'
+  echo 'git push origin Release'
 }
 
 return this
