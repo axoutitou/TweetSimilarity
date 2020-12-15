@@ -27,6 +27,7 @@ pipeline {
 
     stage ('Test App') {
       steps{
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
          script{
             try {
                groovyfile.test_app()
@@ -34,6 +35,7 @@ pipeline {
             } catch (err) {
                error("Tests failed")
             }
+         }
          }
       }
     }
