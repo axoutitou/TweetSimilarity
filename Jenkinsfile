@@ -31,6 +31,14 @@ pipeline {
         }
       }
     }
+    
+    stage ('Release App') {
+      steps{
+          script{
+           groovyfile.release_app()
+          }
+      }
+    }
 
     stage ('Down App') {
       steps{
@@ -39,14 +47,6 @@ pipeline {
            groovyfile.down_app()
           }
         }
-      }
-    }
-
-    stage ('Release App') {
-      steps{
-          script{
-           groovyfile.release_app()
-          }
       }
     }
   }
