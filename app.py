@@ -1,5 +1,13 @@
 from flask import Flask, request, render_template
+from prometheus_client import start_http_server
+from prometheus_client import Counter, Gauge, Summary
 import pickle
+import time
+
+REQUESTS = Counter('tweetSimilarity_requests_total', 'How many time the application has been accessed')
+LAST = Gauge('tweetSimilarity_last_accessed_gauge', 'When was the application last accessed')
+LATENCY = Summary('tweetSimilarity_latency', 'Time needed for a request')
+EXCEPTIONS = Counter('tweetSimilarity_exceptions_total', 'How many time the applications issued an exception')
 
 app = Flask(__name__)
 
@@ -22,13 +30,28 @@ def getTop10SimilarTweet(param_tweet):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST' :
-        details = request.form
-        result = getTop10SimilarTweet(details['tweet'])
-        return render_template('index.html', result=result)
-        
-    else :
-        return render_template('index.html')
+	
+	REQUESTS.inc()
+	start = time.time()
+	LAST.set(start)
+
+	if request.method == 'POST' :
+		details = request.form
+		form_type = details['send_form']
+		time.sleep(int(details['latency']))
+		if(form_type == 'Submit'):
+			result = getTop10SimilarTweet(details['tweet'])
+			LATENCY.observe(time.time()-start)
+			return render_template('index.html', result=result)
+		
+		else:
+			with EXCEPTIONS.count_exceptions() :
+				raise Exception
+		
+	else :
+		LATENCY.observe(time.time()-start)
+		return render_template('index.html')
 
 if __name__ == '__main__':
+    start_http_server(8010)
     app.run(host='0.0.0.0')
