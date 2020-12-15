@@ -1,10 +1,7 @@
 def groovyfile
 
-def testsOK = 'false'
-
 pipeline {
   agent any
-  
   stages {
     stage ('Build Script') {
       steps{
@@ -19,8 +16,7 @@ pipeline {
       steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script{
-           //groovyfile.build_app()
-            echo '.'
+           groovyfile.build_app()
           }
         }
       }
@@ -29,38 +25,28 @@ pipeline {
     stage ('Test App') {
       steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-         script{
-            try {
-             //  groovyfile.test_app()
-              env.testsOK = 'false'
-              echo '.'
-            } catch (err) {
-               error("Tests failed")
-            }
-         }
-         }
-      }
-    }
-    
-    stage ('Down App') {
-      steps{
-        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script{
-          // groovyfile.down_app()
-            echo '.'
+           groovyfile.test_app()
           }
         }
       }
     }
-    
+
+    stage ('Down App') {
+      steps{
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          script{
+           groovyfile.down_app()
+          }
+        }
+      }
+    }
+
     stage ('Release App') {
       steps{
           script{
-            if(env.testsOK == 'true'){
-              echo ${env.testsOK}
-              groovyfile.release_app()
-            }
-         }
+           groovyfile.release_app()
+          }
       }
     }
   }
