@@ -2,6 +2,11 @@ def groovyfile
 
 pipeline {
   agent any
+  
+  parameters{
+   booleanParam(name: "TestsOK", defaultValue: false); 
+  }
+  
   stages {
     stage ('Build Script') {
       steps{
@@ -24,9 +29,22 @@ pipeline {
 
     stage ('Test App') {
       steps{
+         script{
+            try {
+               groovyfile.test_app()
+               params.TestsOK = true
+            } catch (Exception e) {
+              
+            }
+         }
+      }
+    }
+    
+    stage ('Down App') {
+      steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script{
-           groovyfile.test_app()
+           groovyfile.down_app()
           }
         }
       }
@@ -35,18 +53,10 @@ pipeline {
     stage ('Release App') {
       steps{
           script{
-           groovyfile.release_app()
-          }
-      }
-    }
-
-    stage ('Down App') {
-      steps{
-        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-          script{
-           groovyfile.down_app()
-          }
-        }
+            if(params.TestsOK){
+              groovyfile.release_app()
+            }
+         }
       }
     }
   }
