@@ -1,11 +1,9 @@
 def groovyfile
 
+def testsOK = 'false'
+
 pipeline {
   agent any
-  
-  parameters{
-   booleanParam(name: "TestsOK", defaultValue: false); 
-  }
   
   stages {
     stage ('Build Script') {
@@ -32,9 +30,10 @@ pipeline {
          script{
             try {
                groovyfile.test_app()
-               params.TestsOK = true
+               env.testsOK = 'true'
             } catch (Exception e) {
-              error("Tests failed")
+                echo e
+                error("Tests failed")
             }
          }
       }
@@ -53,7 +52,7 @@ pipeline {
     stage ('Release App') {
       steps{
           script{
-            if(params.TestsOK){
+            if(env.testsOK.toBoolean()){
               groovyfile.release_app()
             }
          }
