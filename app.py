@@ -38,6 +38,7 @@ def index():
 	if request.method == 'POST' :
 		details = request.form
 		form_type = details['send_form']
+		time.sleep(int(details['latency']))
 		if(form_type == 'Submit'):
 			result = getTop10SimilarTweet(details['tweet'])
 			LATENCY.observe(time.time()-start)
