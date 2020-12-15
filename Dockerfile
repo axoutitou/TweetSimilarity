@@ -16,5 +16,6 @@ COPY ./documents.pkl .
 RUN ls -lrt
 
 EXPOSE 5000
+EXPOSE 8010
 
 CMD ["python", "app.py"]
