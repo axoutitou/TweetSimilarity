@@ -34,7 +34,7 @@ pipeline {
                groovyfile.test_app()
                params.TestsOK = true
             } catch (Exception e) {
-              
+              error("Tests failed")
             }
          }
       }
