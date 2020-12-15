@@ -57,6 +57,7 @@ pipeline {
       steps{
           script{
             if(env.testsOK == 'true'){
+              echo ${env.testsOK}
               groovyfile.release_app()
             }
          }
