@@ -11,7 +11,8 @@ class FlaskTests(unittest.TestCase):
 		os.environ['NO_PROXY'] = '0.0.0.0'
 		self.parameters = {
 			'phrase': "I'm going to France for my hollidays",
-			'send_form': "Submit"
+			'send_form': 'Submit',
+			'latency': '0'
 		}
 		self.config = testing.setUp()
 	
@@ -21,7 +22,8 @@ class FlaskTests(unittest.TestCase):
 	def test_getTop10SimilarTweet(self):
 		params = {
 			'tweet': self.parameters['phrase'],
-			'send_form' : self.parameters['send_form']
+			'send_form' : self.parameters['send_form'],
+			'latency' : self.parameters['latency']			
 		}		
 		response = requests.post('http://host.docker.internal:5000', data=params)
 		self.assertEqual(response.status_code, 200)
@@ -30,7 +32,8 @@ class FlaskTests(unittest.TestCase):
 		start = perf_counter()
 		params = {
 			'tweet': self.parameters['phrase'],
-			'send_form' : self.parameters['send_form']
+			'send_form' : self.parameters['send_form'],
+			'latency' : self.parameters['latency']
 		}
 		for i in range(1000):
 			response = requests.post('http://host.docker.internal:5000', data=params)

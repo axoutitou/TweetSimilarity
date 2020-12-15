@@ -39,15 +39,15 @@ def index():
 		details = request.form
 		form_type = details['send_form']
 		time.sleep(int(details['latency']))
-		if(form_type == 'Submit'):
-			result = getTop10SimilarTweet(details['tweet'])
-			LATENCY.observe(time.time()-start)
-			return render_template('index.html', result=result)
-		
-		else:
+		if(form_type == 'Raise exception'):
 			with EXCEPTIONS.count_exceptions() :
 				raise Exception
 		
+		else:
+			result = getTop10SimilarTweet(details['tweet'])
+			LATENCY.observe(time.time()-start)
+			return render_template('index.html', result=result)
+			
 	else :
 		LATENCY.observe(time.time()-start)
 		return render_template('index.html')
