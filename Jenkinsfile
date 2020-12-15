@@ -31,7 +31,7 @@ pipeline {
         }
       }
     }
-
+    
     stage ('Down App') {
       steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -41,8 +41,8 @@ pipeline {
         }
       }
     }
-
-    stage ('Release App') {
+    
+   stage ('Release App') {
       steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script{
