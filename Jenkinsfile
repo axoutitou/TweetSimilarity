@@ -31,9 +31,8 @@ pipeline {
             try {
                groovyfile.test_app()
                env.testsOK = 'true'
-            } catch (Exception e) {
-                echo e
-                error("Tests failed")
+            } catch (err) {
+               error("Tests failed")
             }
          }
       }
