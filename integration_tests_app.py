@@ -11,6 +11,7 @@ class FlaskTests(unittest.TestCase):
 		os.environ['NO_PROXY'] = '0.0.0.0'
 		self.parameters = {
 			'phrase': "I'm going to France for my hollidays"
+			'send_form':"Submit"
 		}
 		self.config = testing.setUp()
 	
@@ -20,6 +21,7 @@ class FlaskTests(unittest.TestCase):
 	def test_getTop10SimilarTweet(self):
 		params = {
 			'tweet': self.parameters['phrase']
+			'send_form' : self.parameters['send_form']
 		}		
 		response = requests.post('http://host.docker.internal:5000', data=params)
 		self.assertEqual(response.status_code, 200)
@@ -28,6 +30,7 @@ class FlaskTests(unittest.TestCase):
 		start = perf_counter()
 		params = {
 			'tweet': self.parameters['phrase']
+			'send_form' : self.parameters['send_form']
 		}
 		for i in range(1000):
 			response = requests.post('http://host.docker.internal:5000', data=params)
@@ -38,10 +41,5 @@ class FlaskTests(unittest.TestCase):
 		print(f'Process time is {elapsed_time}')
 		self.assertTrue(elapsed_time < 60.0)
 		
-		
-		
-	
-		
-
 if __name__ == '__main__':
 	unittest.main()
