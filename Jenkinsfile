@@ -32,7 +32,8 @@ pipeline {
          script{
             try {
              //  groovyfile.test_app()
-               env.testsOK = 'true'
+              exit 1
+              env.testsOK = 'true'
               echo '.'
             } catch (err) {
                error("Tests failed")
