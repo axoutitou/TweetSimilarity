@@ -26,7 +26,6 @@ pipeline {
     }
 
     stage ('Test App') {
-      steps{
          script{
             try {
                groovyfile.test_app()
@@ -36,7 +35,6 @@ pipeline {
                 error("Tests failed")
             }
          }
-      }
     }
     
     stage ('Down App') {
