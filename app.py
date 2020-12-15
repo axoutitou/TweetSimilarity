@@ -7,6 +7,7 @@ import time
 REQUESTS = Counter('tweetSimilarity_requests_total', 'How many time the application has been accessed')
 LAST = Gauge('tweetSimilarity_last_accessed_gauge', 'When was the application last accessed')
 LATENCY = Summary('tweetSimilarity_latency', 'Time needed for a request')
+EXCEPTIONS = Counter('tweetSimilarity_exceptions_total', 'How many time the applications issued an exception')
 
 app = Flask(__name__)
 
@@ -33,11 +34,19 @@ def index():
 	REQUESTS.inc()
 	start = time.time()
 	LAST.set(start)
+
 	if request.method == 'POST' :
 		details = request.form
-		result = getTop10SimilarTweet(details['tweet'])
-		LATENCY.observe(time.time()-start)
-		return render_template('index.html', result=result)
+		form_type = details['send_form']
+		if(form_type == 'Submit'):
+			result = getTop10SimilarTweet(details['tweet'])
+			LATENCY.observe(time.time()-start)
+			return render_template('index.html', result=result)
+		
+		else:
+			with EXCEPTIONS.count_exceptions() :
+				raise Exception
+		
 	else :
 		LATENCY.observe(time.time()-start)
 		return render_template('index.html')
