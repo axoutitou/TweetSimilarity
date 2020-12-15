@@ -20,6 +20,7 @@ pipeline {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script{
            //groovyfile.build_app()
+            echo '.'
           }
         }
       }
@@ -32,6 +33,7 @@ pipeline {
             try {
              //  groovyfile.test_app()
                env.testsOK = 'true'
+              echo '.'
             } catch (err) {
                error("Tests failed")
             }
@@ -45,6 +47,7 @@ pipeline {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script{
           // groovyfile.down_app()
+            echo '.'
           }
         }
       }
