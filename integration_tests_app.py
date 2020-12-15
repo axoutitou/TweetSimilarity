@@ -10,8 +10,8 @@ class FlaskTests(unittest.TestCase):
 	def setUp(self):
 		os.environ['NO_PROXY'] = '0.0.0.0'
 		self.parameters = {
-			'phrase': "I'm going to France for my hollidays"
-			'send_form':"Submit"
+			'phrase': "I'm going to France for my hollidays",
+			'send_form': "Submit"
 		}
 		self.config = testing.setUp()
 	
@@ -20,7 +20,7 @@ class FlaskTests(unittest.TestCase):
 		
 	def test_getTop10SimilarTweet(self):
 		params = {
-			'tweet': self.parameters['phrase']
+			'tweet': self.parameters['phrase'],
 			'send_form' : self.parameters['send_form']
 		}		
 		response = requests.post('http://host.docker.internal:5000', data=params)
@@ -29,7 +29,7 @@ class FlaskTests(unittest.TestCase):
 	def test_1000RequestsPerMinute(self):
 		start = perf_counter()
 		params = {
-			'tweet': self.parameters['phrase']
+			'tweet': self.parameters['phrase'],
 			'send_form' : self.parameters['send_form']
 		}
 		for i in range(1000):
