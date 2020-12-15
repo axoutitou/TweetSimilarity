@@ -44,11 +44,9 @@ pipeline {
 
     stage ('Release App') {
       steps{
-        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script{
            groovyfile.release_app()
           }
-        }
       }
     }
   }
