@@ -1,5 +1,4 @@
 .gitignore
 .ipynb_checkpoints
 __pycache__/
-jenkins.Dev.groovy
 docker-compose.yaml
