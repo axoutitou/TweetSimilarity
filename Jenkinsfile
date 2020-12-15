@@ -24,11 +24,17 @@ pipeline {
 
     stage ('Test App') {
       steps{
-        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-          script{
+      script{
            groovyfile.test_app()
           }
-        }
+      }
+    }
+    
+   stage ('Release App') {
+      steps{
+          script{
+           groovyfile.release_app()
+          }
       }
     }
 
@@ -39,14 +45,6 @@ pipeline {
            groovyfile.down_app()
           }
         }
-      }
-    }
-
-    stage ('Release App') {
-      steps{
-          script{
-           groovyfile.release_app()
-          }
       }
     }
   }
