@@ -28,6 +28,17 @@ def getTop10SimilarTweet(param_tweet):
 		
 	return result
 
+def cleanResult(dico):
+	result= {}
+	i=1
+	for key, value in dico.items():
+		result['Top '+str(i)] = {
+			'Sentence': " ".join(dico[key][1]),
+			'Score': dico[key][3]
+		}
+		i+=1
+	return result
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	
@@ -42,7 +53,7 @@ def index():
 		if(form_type == 'Submit'):
 			result = getTop10SimilarTweet(details['tweet'])
 			LATENCY.observe(time.time()-start)
-			return render_template('index.html', result=result)
+			return render_template('index.html', result=cleanResult(result))
 		
 		else:
 			with EXCEPTIONS.count_exceptions() :
