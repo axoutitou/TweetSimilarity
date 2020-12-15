@@ -28,6 +28,7 @@ def test_app(){
   create_tests_env()
   run_unit_tests()
   run_integration_tests()
+  input "Do you validate new updates?"
 }
 
 def down_app(){
