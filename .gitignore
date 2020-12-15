@@ -1,4 +1,5 @@
 .gitignore
 .ipynb_checkpoints
-jenkins.Dev.groovy
+__pycache__
+jenkins.Release.groovy
 docker-compose.yaml
