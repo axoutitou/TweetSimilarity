@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Tweet Similarity - Version 3</title>
+        <title>Tweet Similarity - Version 4</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <h1>Your tweet :</h1>
                             <input type="text" class="form-control" id="tweet" name="tweet"><br>
-                            <p>Latency (s) : </p><input type="text" class="form-control" id="latency" name="latency" value=0>
+                            <p>Latency (s) : </p><input type="text" class="form-control col-lg-1" id="latency" name="latency" value=0><br>
                             <button type="submit" class="btn btn-primary btn-lg" value="Submit" id="send_form" name="send_form">Submit</button>
                             <button type="submit" class="btn btn-danger btn-lg" value="Raise exception" id="send_form" name="send_form">Raise exception</button>
                         </div>
@@ -42,11 +42,11 @@
                 <div class="col-lg-5" >           
                     <ul class="list-group">
                         {% for key, item in result.items() %}
-                            <li class="list-item-group">{{key}} <br> <span>{{item}}</span></li>
+                            <li class="list-item-group">{{key}} <br> <span>Tweet : {{item['Sentence']}}</span><br> <span>Score : {{item['Score']}}</span></li>
                         {% endfor %}
                     </ul>
                     {% else %}
-                        <p>Nothing to display</p>
+                        <h3 style="text-align: center;">Nothing to display</h3>
                     {% endif %}
                 </div>
             </div>
